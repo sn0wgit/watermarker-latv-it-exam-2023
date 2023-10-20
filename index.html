@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>watermarker</title>
+  <script src="/watermarker-latv-it-exam-2023/examples/scripts/watermark.js"></script>
+  <script src="/watermarker-latv-it-exam-2023/examples/scripts/upload.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Maven+Pro' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/watermarker-latv-it-exam-2023/examples/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="/watermarker-latv-it-exam-2023/examples/css/style.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: underline 2px;
+}
+
+a:hover,
+a:active {
+  text-decoration-color: #fff !important;
+}
+
+html,
+body {
+  background: linear-gradient(0deg, #5bb3ff, #0089ff);
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+h1 a:link,
+h1 a:visited {
+  text-decoration-color: #0000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  font: 100 60px 'Roboto';
+}
+
+img {
+  border: 0;
+}
+
+nav {
+  margin-bottom: 40px;
+  margin-top: -20px;
+  position:relative;
+  right: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav strong {
+  color: #fff;
+  font-size: 22px;
+}
+
+nav a {
+  font-size: 22px;
+}
+
+p {
+  color: #fff;
+  font-size: 22px;
+}
+
+pre {
+  background: transparent;
+  border: 0;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.lead {
+  margin-bottom: 40px;
+}
+
+.separator {
+  color: #fff;
+}
+
+.example {
+  text-align: center;
+}
+
+
+.example pre {
+  width: 600px;
+}
+
+.example .hljs {
+  border-radius: 4px;
+}
+
+.example img,
+#preview img {
+  border: 10px solid #fff;
+  box-shadow: 3px 6px 5px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.help-block {
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+#preview {
+  text-align:left;
+}
+
+.radio label {
+  color: #fff;
+}
+
+.sidebar {
+  position: fixed;
+  top: 200px;
+  width: 225px;
+}
+
+.sidebar li {
+  display: block;
+  text-align: left;
+}
+
+.sidebar li ul {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li ul li {
+  border-left: 1px solid #fff;
+  margin: 5px 0;
+  padding-left: 15px;
+}
+
+.sidebar li ul li a {
+  font-size: 14px;
+}
+
+.sidebar .nav {
+  margin:0;
+  padding:0;
+}
+
+#pooling-example img {
+  width: 100%;
+  height: auto;
+}
+
+#pooling-example .row {
+  margin-bottom: 30px;
+}
+
+span.btn {
+    background: #ffffff !important;
+    color: #000 !important;
+    text-shadow: unset;
+    border-radius: 2px !important;
+    border: none;
+}
+
+input#watermark-name {}
+
+input.form-control {
+    background: none !important;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+}
+
+::selection{
+  background: #ffffff1a;
+}
+
+input[type="radio"] {
+    border: 2px solid #fff;
+    appearance: unset;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+input[type="radio"][checked]::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.input-group:nth-of-type(3) {
+    width: 100%;
+}</style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center"><a href="/watermarker-latv-it-exam-2023/">watermarker</a></h1>
+    <div class="row">
+      <div class="col-md-4">
+        <form action="" id="uploadForm" method="POST" style="margin-top: 45px;">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span class="btn btn-primary btn-file">
+                Browse… <input type="file" id="target">
+              </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+          </div>
+          <span class="help-block">
+            Select the image to watermark
+          </span>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span id="watermark-button" type="button" class="btn btn-primary btn-file">
+                Browse… <input type="file" id="watermark">
+              </span>
+            </span>
+            <input type="text" class="form-control" id="watermark-name" readonly="">
+          </div>
+          <span class="help-block">
+            Select the watermark image
+          </span>
+          <div class="input-group">
+            <h3>Position</h3>
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="radio">
+                  <label><input type="radio" name="position" value="lowerRight" checked="">Lower Right</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="position" value="lowerLeft">Lower Left</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="position" value="upperRight">Upper Right</label>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="radio">
+                  <label><input type="radio" name="position" value="upperLeft">Upper Left</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="position" value="center">Center</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="progress" id="progress" style="margin-top: 20px; visibility: hidden;">
+            <div class="progress-bar progress-bar-success progress-bar-striped" style="width: 0%">
+            </div>
+          </div>
+          <p id="complete" style="display: none;">
+            upload complete!
+          </p>
+          <p id="error" style="display: none;">
+            there was an error uploading
+          </p>
+
+        </form>
+      </div>
+      <div class="col-md-offset-1 col-md-7" id="preview">
+        <h2 class="text" style="margin-top:0">Preview</h2>
+      </div>
+    </div>
+</body>
+</html>
