@@ -43,27 +43,6 @@ p {
   font-size: 22px;
 }
 
-.lead {
-  margin-bottom: 40px;
-}
-
-.separator {
-  color: #fff;
-}
-
-.example {
-  text-align: center;
-}
-
-.example pre {
-  width: 600px;
-}
-
-.example .hljs {
-  border-radius: 4px;
-}
-
-.example img,
 #preview img {
   border: 10px solid #fff;
   box-shadow: 3px 6px 5px rgba(0, 0, 0, 0.3);
@@ -100,46 +79,6 @@ p {
 
 .radio label {
   color: #fff;
-}
-
-.sidebar {
-  position: fixed;
-  top: 200px;
-  width: 225px;
-}
-
-.sidebar li {
-  display: block;
-  text-align: left;
-}
-
-.sidebar li ul {
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li ul li {
-  border-left: 1px solid #fff;
-  margin: 5px 0;
-  padding-left: 15px;
-}
-
-.sidebar li ul li a {
-  font-size: 14px;
-}
-
-.sidebar .nav {
-  margin:0;
-  padding:0;
-}
-
-#pooling-example img {
-  width: 100%;
-  height: auto;
-}
-
-#pooling-example .row {
-  margin-bottom: 30px;
 }
 
 span.btn {
@@ -183,7 +122,11 @@ input[type="radio"][checked]::before, .col-xs-6 input:checked::before {
     border-radius: 50%;
 }
     
-input[type=radio]:focus{outline: unset;}</style>
+input[type=radio]:focus{outline: unset;}
+
+#preview img {
+    max-height: calc(100vh - 220px);
+}</style>
 </head>
 
 <body>
