@@ -198,8 +198,6 @@ span.btn {
     border: none;
 }
 
-input#watermark-name {}
-
 input.form-control {
     background: none !important;
     border: none;
@@ -219,17 +217,21 @@ input[type="radio"] {
     border-radius: 50%;
 }
 
-input[type="radio"][checked]::before {
+.input-group:nth-of-type(3) {
+    width: 100%;
+}
+  
+.col-xs-6:has(+ div :checked) label:first-child input[type="radio"]::before, .col-xs-6:first-child:has(input:not([value="lowerRight"]):checked) div:first-child input[type="radio"]::before {background: none;}
+
+input[type="radio"][checked]::before, .col-xs-6 input:checked::before {
     content: '';
     position: absolute;
     inset: 3px;
     background: #fff;
     border-radius: 50%;
 }
-
-.input-group:nth-of-type(3) {
-    width: 100%;
-}</style>
+    
+input[type=radio]:focus{outline: unset;}</style>
 </head>
 
 <body>
