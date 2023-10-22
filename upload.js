@@ -1,52 +1,23 @@
 (function() {
 
   'use strict';
-
-  /**
-   * Quick and dirty upload script to demonstrate uploading
-   * a watermarked image.
-   */
-
-  /**
-   * A variable for storing the cached target image
-   */
   var original;
-
-  /**
-   * ids for aws related inputs
-   */
   var awsFields = ['accessKeyId', 'policy', 'signature', 'bucket'];
-
-  /**
-   * Enable fields identified by ids
-   */
   function enableFields(ids) {
     ids.forEach(function(id) {
       document.getElementById(id).removeAttribute('disabled');
     })
   }
-
-  /**
-   * Determine if inputs identified by ids have values
-   */
   function inputsComplete(ids) {
     return ids.every(function(id) {
       var val = document.getElementById(id);
       return !!val.value;
     });
   }
-
-  /**
-   * Given a file input, set the value of the readonly text input associated with it
-   */
   function setText(input) {
     var group = input.parentNode.parentNode.parentNode;
     group.querySelector('.form-control').value = input.files[0].name;
   }
-
-  /**
-   * A listener that fires when the target image is selected
-   */
   function setTarget(file) {
     enableFields(['watermark-button']);
     Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function (radio) {
@@ -59,10 +30,6 @@
         document.getElementById('preview').appendChild(img);
       });
   }
-
-  /**
-   * A listener that fires when the watermark image has been selected
-   */
   function setWatermark(file) {
     var preview = document.getElementById('preview'),
         img = document.getElementById('target').files[0],
@@ -97,18 +64,10 @@
 
       }
   }
-
-  /**
-   * Check if the watermark has been selected
-   */
   function isWatermarkSelected() {
     var watermark = document.getElementById('watermark-name');
     return !!watermark.value;
   }
-
-  /**
-   * Get a FormData object ready for uploading to S3
-   */
   function getFormData(blob, filename, accessKeyId, policy, signature) {
     var fd = new FormData(),
         params = {
@@ -128,15 +87,6 @@
 
     return fd;
   }
-
-  /**
-   * Perform the upload.
-   *
-   * @param {FormData}
-   * @param {Function} progress handler
-   * @param {Function} completion handler
-   * @param {Function} error handler
-   */
   function upload(onProgress, onComplete, onError) {
     var req = new XMLHttpRequest(),
         key = "watermark-" + Date.now().toString() + '.png',
@@ -165,15 +115,8 @@
         req.send(fd);
       });
   }
-
-  /**
-   * Run the sample app once dom content has loaded
-   */
   document.addEventListener('DOMContentLoaded', function () {
 
-    /**
-     * Handle file selections and position choice
-     */
     document.addEventListener('change', function (e) {
       var input = e.target;
 
@@ -186,11 +129,6 @@
         setWatermark(document.getElementById('watermark').files[0]);
       }
     });
-
-    /**
-     * On keyup for aws inputs, check if the others have been filled in. Once all
-     * have been filled in, enable the upload button
-     */
     awsFields.forEach(function (id) {
       document.getElementById(id).addEventListener('keyup', function () {
         if (inputsComplete(awsFields)) {
@@ -198,10 +136,6 @@
         }
       });
     });
-
-    /**
-     * Handle form submission - i.e actually do the upload
-     */
     var form = document.getElementById('uploadForm');
     form.addEventListener('submit', function (e) {
       var progress = document.getElementById('progress'),
