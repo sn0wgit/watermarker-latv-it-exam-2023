@@ -24,53 +24,13 @@ h1 a:visited {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #fff;
-  font-family: 'Josefin Slab', serif;
-  text-shadow: 0 -1px #000;
-}
-
 img {
   border: 0;
-}
-
-nav {
-  margin-bottom: 40px;
-  margin-top: -20px;
-  position:relative;
-  right: 20px;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-}
-
-nav li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-nav strong {
-  color: #fff;
-  font-size: 22px;
-}
-
-nav a {
-  font-size: 22px;
 }
 
 p {
   color: #fff;
   font-size: 22px;
-}
-
-pre {
-  background: transparent;
-  border: 0;
-  margin: 0 auto;
-  padding: 0;
-  text-align: left;
 }
 
 .lead {
@@ -84,7 +44,6 @@ pre {
 .example {
   text-align: center;
 }
-
 
 .example pre {
   width: 600px;
